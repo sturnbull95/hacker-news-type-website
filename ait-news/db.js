@@ -3,13 +3,13 @@ const URLSlugs = require('mongoose-url-slugs');
 
 // schema tells mongoose the types that are allowed in a collection
 var Comment = new mongoose.Schema({
-    text: String,
-    user: String
+    text: {type:String, required:[true,'Text is required sir!']},
+    user: {type:String, required:[true,'User is required sir!']}
 });
 
 var Link = new mongoose.Schema({
-    url: String,
-    title: String,
+    url: {type: String,required:[true, 'Url is required sir!']},
+    title: {type:String,required:[true, 'Title is required sir!']},
     comments: [Comment]
 });
 

@@ -12,6 +12,7 @@
 var fs = require('fs');
 var express = require('express');
 var hbs = require('hbs');
+var expressSess = require("express-session");
 //var sleep = require('sleep');
 require('./db');
 var mongoose = require('mongoose');
@@ -58,6 +59,7 @@ app.post('/addComment', function(req,res) {
   var slug = req.body.slug;
 
   Link.find({'slug': slug},function(err, linkObj, count){
+    console.log(count);
     var obj = linkObj[0];
     const comment = new Comment({
       text:req.body.text,
@@ -68,8 +70,7 @@ app.post('/addComment', function(req,res) {
       if(!err) {
         res.redirect('/' + obj.slug);
       } else {
-        console.log(err);
-        res.send(err);
+        res.send(err.errors.title.message);
       }
     });
 
@@ -94,8 +95,7 @@ app.post('/addLink', function(req,res) {
       });
       res.redirect('/');
     } else {
-      console.log(err);
-      res.send(err);
+      res.send(err.errors.title.message);
     }
   });
 });
