@@ -1,0 +1,21 @@
+<h1>
+  {{link.title}}
+</h1>&nbsp;<a href = "{{link.slug}}"> {{link.url}}</a><br><br>
+<h2>
+  Comments:
+</h2><br>
+
+<ul>
+{{#each link.comments as |comment|}}
+<li> <i>{{comment.user}} says </i><br>
+  {{comment.text}}
+  </li>
+{{/each}}
+</ul>
+
+<form method="POST" action="/addComment">
+  Comment <input type="text" name="text" >
+  User <input type="text" name="user">
+  <input type = "hidden" name = "slug" value = "{{link.slug}}">
+  <input type="submit" value="Add Comment" name = "Submit">
+</form>

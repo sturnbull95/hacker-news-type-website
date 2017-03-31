@@ -1,0 +1,15 @@
+<h1>
+  480 News!
+</h1>
+<link rel="stylesheet" href="{{css_file}}">
+<ol>
+{{#each links as |link|}}
+  <li> <a href="{{link.slug}}"> {{link.title}}</a> , <a href="{{link.slug}}"> Comments </a> </li>
+{{/each}}
+</ol>
+
+<form method="POST" action="/addLink">
+  Add url <input type="text" name="url" >
+  Add title <input type="text" name="title">
+  <input type="submit" value="Add a link">
+</form>
